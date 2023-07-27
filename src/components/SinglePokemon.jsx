@@ -16,7 +16,7 @@ const SinglePokemon = () => {
             setLoading(true)
             try {
                 const response = await axios.get(
-                    `${selectedPokemon.url}`
+                    `${selectedPokemon.url}`,
                 )
                 console.log(response.data);
                 setThisPokemon(response.data)
@@ -33,12 +33,18 @@ const SinglePokemon = () => {
         return <Puff color="#00BFFF" height={100} width={100}/>
     }
   return (
-    <div>
-      single pokemon
-      <h2>{selectedPokemon.name}</h2>
-      {thisPokemon.types.map((item)=> (
-        <p>{item.type.name}</p>
-      ))}
+    <div className='pokedetails'>
+        <h2>{selectedPokemon.name}</h2>
+        {/* <img src={thisPokemon.sprites.front_default} alt="" /> */}
+        <img src={thisPokemon.sprites.other['official-artwork'].front_default} alt={selectedPokemon.name} className="image"/>
+        {thisPokemon.types.map((type)=> (
+        <p>{type.type.name}</p>
+        ))}
+        {thisPokemon.abilities.map((ability)=> (
+        <p>{ability.ability.name}</p>
+        ))}
+        <p>{thisPokemon.height}</p>
+        <p>{thisPokemon.weight}</p>
     </div>
   )
 }
