@@ -45,12 +45,17 @@ const Homepage = () => {
             setLoading(true)
             try {
                 const response = await axios.get(
-                    `https://pokeapi.co/api/v2/pokemon?limit=493/`
+                    `https://pokeapi.co/api/v2/pokemon?limit=151/`
+
+                    // Gen IV
+                    // `https://pokeapi.co/api/v2/pokemon?limit=493/`
+                    // All current
+                    // `https://pokeapi.co/api/v2/pokemon?limit=1010/`
+
                 );
 
                 const pokeData = response.data.results;
                 
-                // I stole this from Alice, and it still doesnt work?!?!?!?!
                 // get details for pokedex entries
                 const pokeDetails = await Promise.all(
                     pokeData.map(async (pokemon) => {
