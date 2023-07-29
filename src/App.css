@@ -6,7 +6,8 @@ html {
 #root {
   max-width: 100%;
   margin: 0;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
+  padding: 32px 4px 32px 4px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -23,7 +24,7 @@ body {
 
 .type-filter,
 #pokedex-container {
-  max-width: 80%;
+  max-width: 96%;
   margin: auto;
   margin-bottom: 24px;
   display: flex;
@@ -33,10 +34,17 @@ body {
   justify-content: center;
 }
 
-@media screen and (min-width: 920px) {
+@media screen and (min-width: 420px) {
   .type-filter,
   #pokedex-container {
-    max-width: 70%;
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .type-filter,
+  #pokedex-container {
+    max-width: 80%;
   }
 }
 
