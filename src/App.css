@@ -59,6 +59,7 @@ body {
   background-color: rgb(248, 246, 246);
   padding: 12px;
   border-radius: 18px;
+  max-width: 860px;
 }
 
 .type-pill {
