@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Puff } from 'react-loader-spinner'
 import { useNavigate } from 'react-router'
 import { PokeContext } from '../context/PokeContext'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const typeColors = {
     normal: '#a8a878',
@@ -44,15 +46,16 @@ const Homepage = () => {
 
     // useEffect - API call inside
     useEffect(() => {
+        AOS.init();
         const fetchPokemon = async () => {
             setLoading(true)
             try {
                 const response = await axios.get(
                     // original 151
-                    // `https://pokeapi.co/api/v2/pokemon?limit=151/`
+                    `https://pokeapi.co/api/v2/pokemon?limit=151/`
 
                     // Gen IV
-                    `https://pokeapi.co/api/v2/pokemon?limit=493/`
+                    // `https://pokeapi.co/api/v2/pokemon?limit=493/`
                     // All current
                     // `https://pokeapi.co/api/v2/pokemon?limit=1010/`
 
@@ -105,15 +108,16 @@ const Homepage = () => {
     }, [])
 
     useEffect(() => {
+        AOS.init();
         const fetchPokemon = async () => {
             setLoading(true)
             try {
                 const response = await axios.get(
                     // Original 151
-                    // `https://pokeapi.co/api/v2/pokemon?limit=151/`
+                    `https://pokeapi.co/api/v2/pokemon?limit=151/`
 
                     // Gen IV
-                    `https://pokeapi.co/api/v2/pokemon?limit=493/`
+                    // `https://pokeapi.co/api/v2/pokemon?limit=493/`
                     // All current
                     // `https://pokeapi.co/api/v2/pokemon?limit=1010/`
 
@@ -206,7 +210,7 @@ const Homepage = () => {
             ) : pokemon.length === 0 ? (<p>No Pokemon Found</p>) : 
             (
                 filteredPokemon.map((item) => (
-                    <div className='pokedex-entry' key={item.name} >
+                    <div className='pokedex-entry' key={item.name} data-aos='fade-up'>
                         <p className='dex-number'>National Pokédex #{item.id}</p>
                         <h2 className="name">{item.name}</h2>
                         <img className='pokedex-entry-image' src={item.art} alt={item.name} />
