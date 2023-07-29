@@ -158,15 +158,6 @@ h2 {
   max-width: 80%;
 }
 
-.type-container {
-  padding-top: 16px;
-  border-top: solid 1px rgb(150, 150, 150);
-}
-
-.pokedetails-text {
-  width: 100%;
-}
-
 .abilities,
 .size {
   display: inline-block;
