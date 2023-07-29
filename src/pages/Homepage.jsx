@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Puff } from 'react-loader-spinner'
+import { Rings } from 'react-loader-spinner'
 import { useNavigate } from 'react-router'
 import { PokeContext } from '../context/PokeContext'
 import AOS from 'aos';
@@ -206,7 +206,7 @@ const Homepage = () => {
         {/* <h1>Pokedex</h1> */}
         <div id='pokedex-container'>
             {loading ? (
-                <Puff color="#e53131" height={100} width={100}/>
+                <Rings color="#e53131" height={100} width={100} position="absolute" top="30%"/>
             ) : pokemon.length === 0 ? (<p>No Pokemon Found</p>) : 
             (
                 filteredPokemon.map((item) => (

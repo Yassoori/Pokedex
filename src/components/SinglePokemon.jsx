@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PokeContext } from '../context/PokeContext'
-import { Puff } from 'react-loader-spinner'
+import { Rings } from 'react-loader-spinner'
 import axios from 'axios'
 
 const typeColors = {
@@ -50,7 +50,7 @@ const SinglePokemon = () => {
     }, [])
 
     if (loading){
-        return <Puff color="#00BFFF" height={100} width={100}/>
+        return <Rings color="#e53131" height={100} width={100} position="absolute" top="30%"/>
     }
   return (
     <div className='pokedetails'>
