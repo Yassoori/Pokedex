@@ -5,24 +5,24 @@ import { useNavigate } from 'react-router'
 import { PokeContext } from '../context/PokeContext'
 
 const typeColors = {
-    normal: '#B8B08D',
-    fire: '#EACFB7',
-    water: '#A0C1D1',
-    grass: '#9EBF8F',
-    electric: '#F2E77A',
-    ice: '#A1D2D0',
-    fighting: '#B63D3A',
-    poison: '#B06DAB',
-    ground: '#D6C689',
-    flying: '#B69FEC',
-    psychic: '#E2868B',
-    bug: '#A7BD5B',
-    rock: '#BDAF6E',
-    ghost: '#8D7B9C',
-    dragon: '#8574F8',
-    dark: '#8D7B6F',
-    steel: '#B9B9CC',
-    fairy: '#E3AFC3',
+    normal: '#a8a878',
+    fire: '#f08030',
+    water: '#6790f0',
+    grass: '#78c850',
+    electric: '#f8d031',
+    ice: '#98d8d8',
+    fighting: '#c03128',
+    poison: '#a040a0',
+    ground: '#e0c068',
+    flying: '#b69fec',
+    psychic: '#f85888',
+    bug: '#a8b820',
+    rock: '#b8a038',
+    ghost: '#705898',
+    dragon: '#7038f8',
+    dark: '#705848',
+    steel: '#b8b8d0',
+    fairy: '#ee99ac',
   };
 
 const Homepage = () => {
@@ -49,7 +49,8 @@ const Homepage = () => {
                 );
 
                 const pokeData = response.data.results;
-
+                
+                // I stole this from Alice, and it still doesnt work?!?!?!?!
                 // get details for pokedex entries
                 const pokeDetails = await Promise.all(
                     pokeData.map(async (pokemon) => {
@@ -62,21 +63,23 @@ const Homepage = () => {
                         const pokeid = pokeResponse.data.id;
 
                         return {
-                            // name: pokemon.name,
+                            name: pokemon.name,
                             id: pokeResponse.data.id,
                             art: pokeResponse.data.sprites.other['official-artwork'].front_default,
-                            types: type,
+                            type1: type[0],
+                            type2: type[1],
+                            url: pokemon.url
                             // ability: ability,
                         };
                     })
-                )
+                );
 
-                const pokemons = response.data.results.map((pokemon) => {
+                const pokemons = pokeDetails.map((pokemon) => {
                     return {
                         ...pokemon,
                         onSelect: () => setSelectedPokemon(pokemon)
                     }
-                })
+                });
 
                 console.log(response.data.results)
 
@@ -92,24 +95,24 @@ const Homepage = () => {
   return (
     <div>
         <div className="type-filter">
-            <button className='type-pill , normal'>Normal</button>
-            <button className='type-pill , fighting'>Fighting</button>
-            <button className='type-pill , flying'>Flying</button>
-            <button className='type-pill , poison'>Poison</button>
-            <button className='type-pill , fire'>Fire</button>
-            <button className='type-pill , water'>Water</button>
-            <button className='type-pill , grass'>Grass</button>
-            <button className='type-pill , electric'>Electric</button>
-            <button className='type-pill , psychic'>Psychic</button>
-            <button className='type-pill , ice'>Ice</button>
-            <button className='type-pill , ground'>Ground</button>
-            <button className='type-pill , rock'>Rock</button>
-            <button className='type-pill , bug'>Bug</button>
-            <button className='type-pill , dragon'>Dragon</button>
-            <button className='type-pill , ghost'>Ghost</button>
-            <button className='type-pill , dark'>Dark</button>
-            <button className='type-pill , steel'>Steel</button>
-            <button className='type-pill , fairy'>Fairy</button>
+            <button className='type-pill , normal'value='normal'>Normal</button>
+            <button className='type-pill , fighting'value='fighting'>Fighting</button>
+            <button className='type-pill , flying'value='flying'>Flying</button>
+            <button className='type-pill , poison'value='poison'>Poison</button>
+            <button className='type-pill , fire'value='fire'>Fire</button>
+            <button className='type-pill , water'value='water'>Water</button>
+            <button className='type-pill , grass'value='grass'>Grass</button>
+            <button className='type-pill , electric'value='electric'>Electric</button>
+            <button className='type-pill , psychic'value='psychic'>Psychic</button>
+            <button className='type-pill , ice'value='ice'>Ice</button>
+            <button className='type-pill , ground'value='ground'>Ground</button>
+            <button className='type-pill , rock'value='rock'>Rock</button>
+            <button className='type-pill , bug'value='bug'>Bug</button>
+            <button className='type-pill , dragon'value='dragon'>Dragon</button>
+            <button className='type-pill , ghost'value='ghost'>Ghost</button>
+            <button className='type-pill , dark'value='dark'>Dark</button>
+            <button className='type-pill , steel'value='steel'>Steel</button>
+            <button className='type-pill , fairy'value='fairy'>Fairy</button>
         </div>
         
         {/* <h1>Pokedex</h1> */}
@@ -119,9 +122,17 @@ const Homepage = () => {
             ) : pokemon.length === 0 ? (<p>No Pokemon Found</p>) : 
             (
                pokemon.map((item) => (
-                    <div className='pokedex-entry' key={item.name}>
+                    <div className='pokedex-entry' key={item.name} >
                         <h2 className="name">{item.name}</h2>
-                        <img src="" alt="" />
+                        <img className='pokedex-entry-image' src={item.art} alt={item.name} />
+                        <div className='type-container'>
+                            <p className='poke-type , type-pill'  style={{backgroundColor: typeColors[item.type1]}} >{item.type1}</p>
+                            <p className='poke-type , type-pill'  style={{backgroundColor: typeColors[item.type2]}} >{item.type2}</p>
+                        </div>
+
+                        {/* {item.types.map((type)=> (
+                        <p>{type.type.name}</p>
+                        ))} */}
 
                         <button onClick={() => {
                             item.onSelect()
