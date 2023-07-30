@@ -203,7 +203,10 @@ const Homepage = () => {
             {/* Clear */}
             <button onClick={(e) => setType(e.target.value)} className='type-pill , clear' value=''>Clear</button>
             <div id="search-container">
-                <input type='text' id='search-input' name='search' placeholder='Search' onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
+                <input type='text' id='search-input' name='search' placeholder='Search' onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                    console.log(searchTerm);
+                    }} value={searchTerm}/>
             </div>
         </div>
 

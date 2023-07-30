@@ -37,15 +37,30 @@ body {
 
 @media screen and (min-width: 420px) {
   .type-filter,
-  #pokedex-container {
+  #pokedex-container,
+  .pokedetails {
     max-width: 90%;
+  }
+
+  .pokedetails {
+    max-width: 80%;
+  }
+
+  .pokedex-entry {
+    max-width: 220px;
+    max-height: 360px;
+    margin: 6px;
   }
 }
 
 @media screen and (min-width: 650px) {
-  .type-filter,
+  /* .type-filter,
   #pokedex-container {
-    max-width: 80%;
+    max-width: 90%;
+  } */
+
+  .pokedetails {
+    max-width: 60%;
   }
 }
 
@@ -147,9 +162,8 @@ body {
 }
 
 .pokedex-entry {
-  max-width: 220px;
-  max-height: 360px;
-  margin: 6px;
+  width: 100%;
+  margin-bottom: 12px;
   /* padding: 6px; */
   background-color: rgb(248, 246, 246);
   border: solid 1px rgb(150, 150, 150);
@@ -195,7 +209,8 @@ h2 {
   margin: auto;
 }
 
-.read-more {
+.read-more,
+#back {
   width: 106px;
   margin: 6px;
   padding: 6px;
@@ -211,7 +226,7 @@ h2 {
 /* Singlepage */
 
 .pokedetails {
-  width: 50%;
+  width: 96%;
   border: solid 1px rgb(150, 150, 150);
   border-radius: 18px;
   background-color: rgb(248, 246, 246);
