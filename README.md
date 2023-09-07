@@ -1,3 +1,3 @@
 # Pokedex App
 
-## https://pokedex-yasser-saeed.vercel.app/
+## Deployment: https://pokedex-yasser-saeed.vercel.app/
