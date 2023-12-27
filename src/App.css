@@ -35,7 +35,7 @@ body {
   justify-content: center;
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 450px) {
   .type-filter,
   #pokedex-container,
   .pokedetails {
