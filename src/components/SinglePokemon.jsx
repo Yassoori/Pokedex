@@ -75,6 +75,7 @@ const SinglePokemon = () => {
                 <p>Weight: {thisPokemon.weight}kg</p>
             </div>
             <p className='lorem'>While most Pokémon resemble animals and may behave like them, there are many that do not resemble animals at all, taking on other forms such as plants, inanimate objects, machines, human-like forms, or other more enigmatic and exotic appearances. Pokémon inhabit an extremely diverse range of habitats, ranging from the driest deserts to the lushest jungles, the deepest oceans to the highest mountains and everything else in between, even outer space and other dimensions. Pokémon take up various ways of living in those places. However, all can be befriended and made into potential allies and share the ability to shrink down small enough to fit into a Poké Ball.</p>
+            <button id='back' onClick={() => {navigate('/')}}>Back</button>
         </div>
     </div>
   )
