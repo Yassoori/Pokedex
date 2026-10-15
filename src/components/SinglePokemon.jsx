@@ -29,6 +29,7 @@ const SinglePokemon = () => {
     const {selectedPokemon} = useContext(PokeContext)
     const navigate = useNavigate()
     const [thisPokemon, setThisPokemon] = useState(null)
+    const [flavourText, setFlavourText] = useState('')
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
@@ -38,8 +39,16 @@ const SinglePokemon = () => {
                 const response = await axios.get(
                     `${selectedPokemon.url}`,
                 )
+                const speciesResponse = await axios.get(
+                    `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon.id}`
+                )
+                const englishFlavourText = speciesResponse.data.flavor_text_entries.find(
+                    (entry) => entry.language.name === 'en'
+                )
+
                 console.log(response.data);
                 setThisPokemon(response.data)
+                setFlavourText(englishFlavourText?.flavor_text.replace(/[\f\n]/g, ' ') ?? '')
                 setLoading(false)
 
             } catch (error) {
@@ -65,16 +74,18 @@ const SinglePokemon = () => {
                 ))}
         </div>
         <div className='pokedetails-text'>
-            <div className="abilities">
-                {thisPokemon.abilities.map((ability)=> (
-                <p>Ability: {ability.ability.name}</p>
-                ))}
+            <p className='flavour-text'>{flavourText}</p>
+            <div className="abilities-size">
+                <div className="abilities">
+                    {thisPokemon.abilities.map((ability)=> (
+                    <p>Ability: {ability.ability.name}</p>
+                    ))}
+                </div>
+                <div className="size">
+                    <p>Height: {thisPokemon.height /10}m</p>
+                    <p>Weight: {thisPokemon.weight}kg</p>
+                </div>
             </div>
-            <div className="size">
-                <p>Height: {thisPokemon.height /10}m</p>
-                <p>Weight: {thisPokemon.weight}kg</p>
-            </div>
-            <p className='lorem'>While most Pokémon resemble animals and may behave like them, there are many that do not resemble animals at all, taking on other forms such as plants, inanimate objects, machines, human-like forms, or other more enigmatic and exotic appearances. Pokémon inhabit an extremely diverse range of habitats, ranging from the driest deserts to the lushest jungles, the deepest oceans to the highest mountains and everything else in between, even outer space and other dimensions. Pokémon take up various ways of living in those places. However, all can be befriended and made into potential allies and share the ability to shrink down small enough to fit into a Poké Ball.</p>
             <button id='back' onClick={() => {navigate('/')}}>Back</button>
         </div>
     </div>
